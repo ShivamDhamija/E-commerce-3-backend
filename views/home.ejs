@@ -1,0 +1,47 @@
+<%- include("partials/upper") %>
+
+
+    <%- include("partials/header", { user: user }) %>
+    <form action="/changePAssword" method="get">
+      <p name="<%=user%>"></p>
+      <button class="btn btn-secondary"  type="submit">Change Password</button>
+    </form>
+  
+    <h1>
+      welcome here 
+    </h1>
+<!--if we have product then show here-->
+    <% if(isDiv){%>
+    <div id="imgDiv" class="containar">
+     <%m=m %>
+     
+     <%if(m>isDiv.length) m=isDiv.length%>
+    <% for(i=0;i<m;i++){ %>
+    <div id=<%=isDiv[i].pImage%>>
+
+      <h1><%=isDiv[i].pName%></h1>
+      <img src="<%=isDiv[i].pImage%>" alt="no pImage%" style="width:150px;height: 100px ;" />
+     <br><br>
+     <form action="/addToCart" method="post">
+       <input name="imageName" value="<%=isDiv[i].pImage%>"style="display:none;" ></input>
+       <button type="submit"  class="btn btn-dark Margin" >Add to Cart</button>
+     </form>
+      
+      <button  id="btns"  class="btn btn-light Margin" data-bs-toggle="modal" data-bs-target="#staticBackdrop" name=<%=isDiv[i].pImage%>>Description</button>
+      <%- include("partials/modal",{n:isDiv[i].pImage}) %>
+      <br><br><br>
+    </div>
+      <!--modal-->
+      
+      <%}%>
+ 
+
+      <form action="/loadmore" method="post">
+        <input type="number"value=<%=m%> name="value" style="display: none;">
+        <button class="btn btn-primary" type="submit" id=m> Load more</button>
+      </form>
+    </div>
+    <%}%>
+
+    <script src="modal.js"></script>
+  <%- include("partials/lower") %>
